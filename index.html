@@ -1,0 +1,216 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.js"></script>
+    <script type="text/javascript" src="./js/script.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.21.0/vis.min.css">
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.3/umd/popper.min.js" integrity="sha384-vFJXuSJphROIrBnz7yo7oB41mKfc8JzQZiCq4NCceLEaO4IHwicKwpJf9c9IpFgh" crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0-beta.2/js/bootstrap.min.js" integrity="sha384-alpBpkh1PFOepccYVYDB4do5UnbKysX5WZXm3XxPqe5iKTfUKjNkCk9SaVuEZflJ" crossorigin="anonymous"></script>
+    <title>CEUTEC - ESTRUCTURA DE DATOS 2</title>
+    <!-- Bootstrap core CSS -->
+    <link href="vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+    <link href="./css/style.css" rel="stylesheet">
+    <!-- Custom styles for this template -->
+    
+</head>
+
+  <body>
+    <nav class="navbar navbar-expand-lg navbar-dark bg-dark fixed-top">
+      <div class="container">
+        <a class="navbar-brand" href="#"><img src="./img/logo.png"> CEUTEC - EDD2</a>
+        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarResponsive">
+          <ul class="navbar-nav ml-auto">
+            <li class="nav-item active">
+              <a class="nav-link" onclick="Insertar()" href="javascript:void(0);">Insertar
+                <span class="sr-only">(current)</span>
+              </a>
+            </li>
+            <li class="nav-item">
+              <a class="nav-link" href="javascript:void(0);" onclick="eliminarNodo()">Eliminar</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    <br>
+    <br>
+    <!-- Page Content -->
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12 text-center">
+          <h2 class="mt-5">Estructura de datos 2 segundo periodo 2018</h2>
+          <p class="lead">Proyecto Final: Arbol Binario</p>
+        </div>
+      </div>
+    </div>
+    <div class="container">
+        <div class="row">
+            <div class="jumbotron col-md-12">
+            <h2 style="text-align: center">Arbol Binario: </h2>
+            <div class="text-md-center">
+              <p> Nodo Actual: <span class="text-md-center" id="nodoactual"></span></p>
+            </div>
+            <div class="text-md-center">
+                <p> listado de nodos: <span class="text-md-center" id="listadoNodos"></span></p>
+              </div>            
+            <div class="text-md-center">
+                <p> Total nodos: <span class="text-md-center" id="nodototal"></span></p>
+              </div>
+                <div id="mynetwork" class="col-xs-12 col-md-12 col-center" style="display:inline-block"></div>                
+                <script type="text/javascript">
+                  // create an array with nodes
+                    var tree = new BinarySearchTree();
+                    function Insertar()
+                    {
+                      var txt;
+                      var person = prompt("por favor ingrese un numero entero:", "");
+                      if (person == null || person == "")
+                      {
+                        alert("Cancelaste la operacion, no se insertara nada");
+                      } 
+                      else 
+                      {
+                        txt  = parseInt(person);
+                        if (isNaN(txt))
+                        {
+                          alert("Valor ingresado no es valido,\n ingrese un numero entero.");
+                        }
+                        else
+                        {
+                          document.getElementById("nodoactual").innerHTML = person;
+                          tree.add(txt);
+                          tree.toArray();
+                          dibujarArbol();
+                          contarNodos();
+                          listarNodos();
+
+                        }
+                      }
+                    };
+                    function listarNodos()
+                    {
+                      document.getElementById("listadoNodos").innerHTML = tree.toArray();
+                    };
+                    function eliminarNodo()
+                    {
+                      var txt;
+                      var person = prompt("por favor ingrese un numero entero:", "");
+                      if (person == null || person == "")
+                      {
+                        alert("Cancelaste la operacion, no se elimino nada");
+                      }
+                      else 
+                      {
+                        txt  = parseInt(person);
+                        if (isNaN(txt))
+                        {
+                          alert("Valor ingresado no es valido,\n ingrese un numero entero.");
+                        }
+                        else
+                        {
+                          if(tree.contains(txt))
+                          {
+                            document.getElementById("nodoactual").innerHTML = person;
+                            tree.remove(txt);
+                            tree.toArray();
+                            dibujarArbol();
+                            contarNodos();
+                            listarNodos();
+                          }
+                          else
+                          {
+                            alert("No existe ese elmento " + person + " en el arbol actual");
+                          }
+                        }
+                      }                      
+                    };
+                    function destroy() 
+                    {
+                      if (network !== null)
+                      {
+                        network.destroy();
+                        network = null;
+                      }
+                    };
+                    function contarNodos()
+                    {
+                      var contado = tree.size();
+                      document.getElementById("nodototal").innerHTML = contado;
+                    };
+                    function dibujarArbol()
+                    {
+                      //destroy();
+                      var layoutMethod = "directed";
+                      var DOTstring = cadenaDot._dot;
+                      var parsedData = vis.network.convertDot(DOTstring);
+                      var container = document.getElementById('mynetwork');
+                      var data = {
+                        nodes: parsedData.nodes,
+                        edges: parsedData.edges
+                      }
+                      //var options = parsedData.options;
+                      var options = 
+                      {
+                        nodes:
+                        {
+                          color:'red'
+                        },
+                        layout:
+                        {
+                          hierarchical:
+                          {
+                            sortMethod:layoutMethod
+                          }
+                        },
+                        edges:
+                        {
+                          smooth:true,
+                          arrows:{to:true}
+                        }
+
+                      }
+
+                      var network = new vis.Network(container, data, options);  
+                    };             
+                </script>
+            </div>
+        </div>
+    </div>                   
+    <div id="footer">
+        <div class="container  text-md-center">
+
+            <div class="row">
+                <h3 class="text-center">Juan Carlos Sanchez Mejia - 31041114</h3>
+            </div>
+            <div class="row center-block">
+                <a href="https://github.com/jcsanchez1">
+                  <img src="./img/github.png">
+                </a>
+                <a href="https://codepen.io/jcsanchez1/">
+                    <img src="./img/codepen.png">
+                  </a>                
+                  <a href="https://www.freecodecamp.org/jcsanchez1">
+                      <img src="./img/freecodecampc.png">
+                    </a>                  
+                    <a href="https://www.linkedin.com/in/jcsanchezm1/">
+                        <img src="./img/linkedin.png">
+                      </a>                    
+            </div>            
+        </div>
+    </div>
+
+                <!-- Bootstrap core JavaScript -->
+    <script src="vendor/jquery/jquery.min.js"></script>
+    <script src="vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+
+  </body>
+
+</html>

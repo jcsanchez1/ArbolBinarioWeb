@@ -1,0 +1,52 @@
+body 
+{
+    padding-top: 54px;
+    margin-bottom: 60px;
+}
+@media (min-width: 992px) 
+{
+    body
+    {
+      padding-top: 56px;
+    }
+}
+#mynetwork
+{
+    width: 800px;
+    height: 800px;
+    border: 1px solid lightgray;
+}
+#footer
+{
+    /*position: absolute;*/
+    bottom: 0;
+    width: 100%;
+    /* Set the fixed height of the footer here */
+    height: 280px;
+    background: 
+    /* color overlay */ 
+      linear-gradient(
+        rgba(240, 212, 0, 0.45), 
+        rgba(0, 0, 0, 0.45)
+      ),
+      /* image to overlay */
+      url(../img/footer.png);
+      background-repeat: no-repeat;
+      background-size: cover;
+  }
+  
+  
+  /* Custom footer CSS
+  -------------------------------------------------- */
+  
+  .container {
+    width: auto;
+    max-width: 680px;
+    padding: 0 15px;
+  }
+  .container .text-muted {
+    margin: 20px 0;
+  }
+  .footertext {
+    color: #ffffff;
+  }
