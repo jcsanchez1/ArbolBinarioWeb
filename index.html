@@ -36,6 +36,9 @@
             <li class="nav-item">
               <a class="nav-link" href="javascript:void(0);" onclick="eliminarNodo()">Eliminar</a>
             </li>
+            <li class="nav-item">
+              <a class="nav-link" href="javascript:void(0);" onclick="buscandoNodo()">Buscar Nodo</a>
+            </li>            
           </ul>
         </div>
       </div>
@@ -132,6 +135,36 @@
                         }
                       }                      
                     };
+                    function buscandoNodo()
+                    {
+                      var txt;
+                      var person = prompt("por favor ingrese un numero entero:", "");
+                      if (person == null || person == "")
+                      {
+                        alert("Cancelaste la operacion, no se buscara nada");
+                      }
+                      else 
+                      {
+                        txt  = parseInt(person);
+                        if (isNaN(txt))
+                        {
+                          alert("Valor ingresado no es valido,\n ingrese un numero entero.");
+                        }
+                        else
+                        {
+                          if(tree.contains(txt))
+                          {
+                            alert(tree.buscarPapa(txt));
+                            
+                            
+                          }
+                          else
+                          {
+                            alert("No existe ese elmento " + person + " en el arbol actual");
+                          }
+                        }
+                      }                      
+                    };                    
                     function destroy() 
                     {
                       if (network !== null)

@@ -1,3 +1,6 @@
+var contar = 1;
+var posicion ="";
+var papa;
 function BinarySearchTree() 
 {
     this._root = null;
@@ -193,6 +196,38 @@ BinarySearchTree.prototype =
             return true;
         }
     },
+    buscarPapa(value)
+    {
+        return this.encontrarPadre(value,this._root);
+    },
+    encontrarPadre: function(value, current) 
+    {
+
+        if (current === null) 
+        {
+            return "el nodo " + value + "no se encuentra en el arbol actual";
+        }
+        if (value < current.value) 
+        {
+            contar++;
+            console.log("I" + contar);
+            posicion="izquierda";
+            return this.encontrarPadre(value, current.left);
+            
+        } 
+        else if (value > current.value) 
+        {
+            contar++;
+            console.log("D: "+contar);
+            posicion="derecha";
+            return this.encontrarPadre(value, current.right);
+        } 
+        else 
+        {
+            papa = this.findValuesParent(value,this._root,null);
+            return "el nodo " + value + "\n esta en el lado " + posicion + "\n esta en la posicion " + contar.toString() + "\n y el padre es " + papa.value ;
+        }
+    },    
     traverse: function(process) 
     {
         nodos ="";
