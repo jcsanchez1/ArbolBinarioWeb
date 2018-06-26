@@ -140,13 +140,19 @@ BinarySearchTree.prototype =
                         }
                         break;
                     case 1:
+                    console.log("V: "+ v.value + "; P: "+ p.value);
                         if (v.value < p.value) 
                         {
+                            //console.log("P.left: " + p.left.value + " V.left: " + v.left.value + " V.Right: " + v.right.value);
+                            //console.log
                             p.left = (v.left === null ? v.right : v.left);
+                            console.log("derecha");
                         } 
                         else 
                         {
-                            p.right = (p.left === null ? v.right : v.left);
+                            //console.log("P.right: " + p.right.value + " V.right: " + v.right.value + " V.left:" + v.left.value);
+                            p.right = (v.left === null ? v.right : v.left);
+                            console.log("izquierda");
                         }
                         break; 
                     case 2:

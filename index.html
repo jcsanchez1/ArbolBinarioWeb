@@ -94,6 +94,8 @@
                           dibujarArbol();
                           contarNodos();
                           listarNodos();
+                          console.log("se agrega un nodo al arbol:");
+                          imprimirArbol();
 
                         }
                       }
@@ -127,6 +129,8 @@
                             dibujarArbol();
                             contarNodos();
                             listarNodos();
+                            console.log("se elimino un nodo al arbol:");
+                          imprimirArbol();                            
                           }
                           else
                           {
@@ -212,7 +216,12 @@
                       }
 
                       var network = new vis.Network(container, data, options);  
-                    };             
+                    };  
+                    function imprimirArbol()
+                    {
+                      console.log(tree.toArray());
+                    };
+                    
                 </script>
             </div>
         </div>
